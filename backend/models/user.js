@@ -4,19 +4,23 @@ const validator = require('validator');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    default: "Jacques Cousteau", 
     minlength: 2,
     maxlength: 30,
-    default: 'Jacques Cousteau',
   },
   about: {
     type: String,
+    default: "Explorador", 
     minlength: 2,
     maxlength: 30,
-    default: 'Explorador',
   },
   avatar: {
     type: String,
-    default: 'https://practicum-content.s3.us-west-1.amazonaws.com/resources/frontend-developer/common/ava.jpg',
+    default: "https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg",
+    validate: {
+      validator: (v) => validator.isURL(v),
+      message: 'Formato de avatar no válido',
+    },
   },
   email: {
     type: String,
@@ -24,7 +28,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (v) => validator.isEmail(v),
-      message: 'Formato de correo electrónico incorrecto',
+      message: 'Formato de email no válido',
     },
   },
   password: {
@@ -33,5 +37,3 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 });
-
-module.exports = mongoose.model('user', userSchema);
