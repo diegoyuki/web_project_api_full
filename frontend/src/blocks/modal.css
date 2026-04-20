@@ -1,0 +1,477 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal__container {
+  position: relative;
+  background-color: white;
+  color: black;
+  padding: 40px 36px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal__close {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 32px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal__close:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+}
+
+
+.form-validator__input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+}
+
+.form-validator__input:focus {
+  border-bottom: 1px solid black;
+}
+
+.form-validator__submit {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.form-validator__submit_enabled {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.form-validator__error {
+  color: red;
+  font-size: 12px;
+  height: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.add-form__input-error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+  height: 14px;
+  visibility: hidden;
+}
+
+.add-form__input-invalid + .add-form__input-error {
+  visibility: visible;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-form__title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.edit-form__input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+}
+
+.edit-form__input:focus {
+  border-bottom: 1px solid black;
+}
+
+.edit-form__submit {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-form__submit:hover {
+  background-color: #333;
+}
+
+.modal-add-place .modal__content {
+  position: relative;
+  background-color: white;
+  color: black;
+  padding: 40px 36px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-add-place .modal__title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0;
+  color: black;
+}
+
+.add-form__input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+}
+
+.modal__save {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 14px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 90%; 
+  align-self: center;
+}
+
+.modal__save:hover {
+  background-color: #333;
+}
+
+.modal-image-preview {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 0;
+  flex-direction: column; 
+}
+
+.modal-image-preview__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+
+.modal-image-preview__close {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  background: none;
+  border: none;
+  font-size: 50px;
+  font-weight: normal;
+  cursor: pointer;
+  color: white;
+  z-index: 2001;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-image-preview__close:hover {
+  color: #aaa;
+}
+
+.modal-image-preview__img {
+  max-width: 816px;
+  max-height: 540px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  position: relative;
+}
+
+.modal-image-preview__caption {
+  margin-top: 8px; 
+  color: white;
+  font-size: 18px;
+  align-self: flex-start; 
+  max-width: 816px; 
+}
+
+.modal-edit-avatar .modal__container {
+  width: 400px;
+  max-width: 90%;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.edit-avatar-form__title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit-avatar-form .form-validator__input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.form-validator__error {
+  font-size: 12px;
+  color: red;
+  margin-top: -6px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.edit-avatar-form__submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-avatar-form__submit:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.edit-avatar-form__submit:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.popup__confirm-button {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  padding: 12px 0;
+  width: 100%;                
+  max-width: 500px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 20px auto 0;        
+  display: block;             
+}
+
+.popup__confirm-button:hover {
+  background-color: #333;
+}
+
+.button {
+  transition: opacity 0.3s ease;
+}
+
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 875px) {
+  .modal__container {
+    max-width: 400px;
+    padding: 36px 32px;
+  }
+
+  .modal__close {
+    top: -30px;
+    right: -30px;
+    width: 36px;
+    height: 36px;
+    font-size: 28px;
+  }
+
+  .modal-image-preview__img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .modal-image-preview__caption {
+    font-size: 16px;
+    max-width: 90vw;
+  }
+
+  .modal-image-preview__close {
+    top: -30px;
+    right: -30px;
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal__container {
+    max-width: 360px;
+    padding: 30px 28px;
+  }
+
+  .modal__close {
+    top: -25px;
+    right: -25px;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+  }
+
+  .edit-form__title {
+    font-size: 20px;
+  }
+
+  .edit-form__input {
+    font-size: 14px;
+  }
+
+  .edit-form__submit {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .modal-image-preview__img {
+    max-width: 85vw;
+    max-height: 55vh;
+  }
+
+  .modal-image-preview__caption {
+    font-size: 15px;
+    max-width: 85vw;
+  }
+
+  .modal-image-preview__close {
+    top: -30px;
+    right: -30px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .modal__container {
+    position: relative; 
+    width: 90vw;
+    max-width: none;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    background-color: white;
+    z-index: 1000;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    font-size: 24px;
+    color: white;
+    border-radius: 50%;
+    z-index: 1001;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+  }
+
+  .modal-add-place .modal__content {
+    width: 85vw;
+    max-width: none;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .modal-image-preview__img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .modal-image-preview__caption {
+    font-size: 14px;
+    max-width: 85vw;
+  }
+
+  .modal-image-preview__close {
+    position: absolute;
+    top: -28px;
+    right: -25px;
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: white;
+    font-weight: normal;
+    padding: 0;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3000;
+  }
+}
+
+
+
+
