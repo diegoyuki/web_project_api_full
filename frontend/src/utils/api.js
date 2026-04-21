@@ -77,9 +77,7 @@ class Api {
   }
 }
 
-const BASE_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3000' 
-  : 'https://api.mi-dominio.com';
+const BASE_URL = 'http://34.31.215.19:3000';
 
 const api = new Api({
   baseUrl: BASE_URL,
