@@ -9,9 +9,11 @@ Este es el proyecto final que integra un servidor desarrollado en Node.js con Ex
 - **Infraestructura:** Google Cloud Platform, Nginx, PM2.
 
 ## Enlaces
-- **Frontend:** [https://tu-dominio.com](https://tu-dominio.com)
-- **Backend (API):** [https://api.tu-dominio.com](https://api.mi-dominio.com)
-- **IP del Servidor:** Tu.IP.Publica
+-Frontend: https://mi-dominio.com (Próximamente)
+
+-Backend (API): http://34.31.215.19:3000
+
+-IP del Servidor: 34.31.215.19
 
 ## Instalación y ejecución local
 1. Clona el repositorio.
