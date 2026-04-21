@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:3000";
+const BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000' 
+  : 'https://api.mi-dominio.com';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {

@@ -1,34 +1,30 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
-const validator = require('validator');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-const validateURL = (value, helpers) => {
-  if (validator.isURL(value)) {
-    return value;
-  }
-  return helpers.error('string.uri');
-};
-
-mongoose.connect('mongodb://localhost:27017/aroundb');
+const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
 const { PORT = 3000 } = process.env;
 
-// 1. CONFIGURACIÓN DE SEGURIDAD Y PARSEO (Siempre al principio)
+mongoose.connect('mongodb://localhost:27017/aroundb');
+
 app.use(cors());
-app.options('*', cors());
+app.options('(.*)', cors());
 app.use(express.json());
 
-// 2. LOGGER DE PETICIONES (Antes de las rutas)
 app.use(requestLogger);
 
-// RUTAS PÚBLICAS (Mover aquí arriba)
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('El servidor va a caer');
+  }, 0);
+});
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -40,35 +36,28 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    // ... otros campos
+    name: Joi.string().min(2).max(30),
+    about: Joi.string().min(2).max(30),
+    avatar: Joi.string().uri(),
   }),
 }), createUser);
 
 app.use(auth);
 
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
+app.use('/users', require('./routes/users'));
+app.use('/cards', require('./routes/cards'));
 
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
-
-// 5. MANEJO DE RUTAS NO ENCONTRADAS (Después de todas las rutas válidas)
-app.use((req, res) => {
-  res.status(404).send({
-    message: 'Recurso solicitado no encontrado',
-  });
+app.use((req, res, next) => {
+  next(new NotFoundError('Recurso solicitado no encontrado'));
 });
 
-// 6. LOGS Y ERRORES (Al final de todo)
-app.use(errorLogger); // Primero el logger de errores
-app.use(errors());      // Luego los errores de celebrate
+app.use(errorLogger);
+app.use(errors());
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({
-    message: statusCode === 500
-      ? 'Ha ocurrido un error en el servidor'
-      : message,
+    message: statusCode === 500 ? 'Ha ocurrido un error en el servidor' : message,
   });
 });
 

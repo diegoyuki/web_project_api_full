@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const usersRouter = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
   getUsers,
@@ -8,28 +8,26 @@ const {
   getCurrentUser,
 } = require('../controllers/users');
 
-// Validación de ID de usuario reutilizable
-const validateUserId = celebrate({
+usersRouter.get('/', getUsers);
+usersRouter.get('/me', getCurrentUser);
+
+usersRouter.get('/:userId', celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().hex().length(24),
+    userId: Joi.string().hex().length(24).required(),
   }),
-});
+}), getUserById);
 
-router.get('/', getUsers);
-router.get('/me', getCurrentUser);
-router.get('/:userId', validateUserId, getUserById);
-
-router.patch('/me', celebrate({
+usersRouter.patch('/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
   }),
 }), updateUser);
 
-router.patch('/me/avatar', celebrate({
+usersRouter.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().required().uri(),
   }),
 }), updateAvatar);
 
-module.exports = router;
+module.exports = usersRouter;

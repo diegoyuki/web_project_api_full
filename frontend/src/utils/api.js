@@ -77,8 +77,12 @@ class Api {
   }
 }
 
+const BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000' 
+  : 'https://api.mi-dominio.com';
+
 const api = new Api({
-  baseUrl: 'http://localhost:3000', 
+  baseUrl: BASE_URL,
   headers: {
     "Content-Type": 'application/json'
   }

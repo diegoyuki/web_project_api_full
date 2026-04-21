@@ -5,10 +5,12 @@ npm-debug.log*
 
 # Dependencias
 node_modules
-
 .npm
 
 # Sistema / IDE
 .DS_Store
 .idea
 .vscode
+
+# Variables de entorno 
+.env
